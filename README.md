@@ -80,7 +80,8 @@ The iOS project has already been configured with background audio permissions:
 
 ### Run on iOS Simulator or Device:
 ```bash
-cd /Users/home/Developer/soundscape_layerer
+git clone https://github.com/afsalkp007/soundscape_layerer.git
+cd soundscape_layerer
 flutter pub get
 cd ios && pod install && cd ..
 flutter run -d ios
