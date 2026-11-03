@@ -111,28 +111,3 @@ flutter test
 ```
 
 ---
-
-## 📜 Commit History (Oct 30, 2026 onwards)
-
-This repository was constructed with granular, chronological commits:
-- `chore: initial repository setup and README` (Oct 30)
-- `feat(scaffold): setup project structure, pubspec.yaml, and analysis options` (Oct 30)
-- `feat(theme): add soundscape design system, dark palette, and typography` (Oct 30)
-- `feat(models): implement spatial position and sound track domain models` (Oct 30)
-- `feat(models): add binaural wave and sound preset entities` (Oct 31)
-- `feat(audio): implement audio math utilities and procedural wav audio generator` (Oct 31)
-- `feat(audio): build procedural noise synthesis and binaural beat engine` (Oct 31)
-- `feat(service): create multi-track audio engine service and mock sound registry` (Nov 01)
-- `feat(service): implement sleep timer with linear and logarithmic fade-out` (Nov 01)
-- `feat(storage): build preset persistence and factory preset catalog` (Nov 01)
-- `feat(state): develop reactive soundscape and mixer state controller` (Nov 02)
-- `feat(ui): create reusable glassmorphism cards, glowing dials, and sliders` (Nov 02)
-- `feat(spatial): build 2D interactive spatial soundstage canvas` (Nov 02)
-- `feat(binaural): build binaural rack UI with brainwave band selector and frequency visualizer` (Nov 03)
-- `feat(ui): implement multi-track mixer panel, master playback bar, and sleep timer modal` (Nov 03)
-- `feat(views): assemble main app views, responsive navigation tabs, and entry point` (Nov 03)
-- `test: add comprehensive test suite for models, audio math, wav generator, and controllers` (Nov 03)
-- `feat(ios): configure iOS runner, audio background modes, and info.plist` (Nov 03)
-- `feat(supabase): create supabase schema, client config, and cloud preset service` (Nov 03)
-- `feat(ui): integrate supabase cloud sync and community presets into preset drawer` (Nov 03)
-- `docs: update README with iOS setup and Supabase configuration guide` (Nov 03)
