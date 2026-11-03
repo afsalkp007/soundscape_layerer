@@ -4,6 +4,15 @@
 
 ---
 
+## 📱 App Screenshots
+
+| 2D Spatial Soundstage | Multi-Track Mixer Console | Binaural Beat Synthesizer |
+| :---: | :---: | :---: |
+| <img src="screenshots/screenshot_soundstage.jpg" width="260" alt="2D Spatial Soundstage"/> | <img src="screenshots/screenshot_mixer.jpg" width="260" alt="Mixer Console"/> | <img src="screenshots/screenshot_binaural.jpg" width="260" alt="Binaural Synthesizer"/> |
+| *Drag sound nodes in 360° space around the listener avatar* | *Tactile channel strips, dB faders, rotary pan dials & mute/solo* | *Dual-ear phase visualizer, Solfeggio carrier frequencies & brainwave selector* |
+
+---
+
 ## 🌟 Key Features
 
 - **🌐 2D Interactive Spatial Soundstage**: Drag ambient sound orbs around a central listener avatar. Distance determines volume attenuation, while horizontal placement calculates stereo panning in real-time.
