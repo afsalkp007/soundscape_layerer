@@ -1,23 +1,31 @@
 import 'package:flutter/foundation.dart';
 import '../models/sound_preset.dart';
 import '../services/storage/preset_storage_service.dart';
+import '../services/supabase/supabase_preset_service.dart';
 import 'binaural_controller.dart';
 import 'soundscape_controller.dart';
 
-/// Controller managing preset loading, saving, deletion, and active preset tracking.
+/// Controller managing preset loading, saving, deletion, and Supabase cloud sync.
 class PresetController extends ChangeNotifier {
   final PresetStorageService _storageService;
+  final SupabasePresetService _supabaseService;
+
   List<SoundPreset> _presets = [];
+  List<SoundPreset> _communityPresets = [];
   SoundPreset? _activePreset;
   bool _isLoading = false;
 
   PresetController({
     PresetStorageService? storageService,
-  }) : _storageService = storageService ?? PresetStorageService() {
+    SupabasePresetService? supabaseService,
+  })  : _storageService = storageService ?? PresetStorageService(),
+        _supabaseService = supabaseService ?? SupabasePresetService() {
     loadPresets();
+    fetchCommunityPresets();
   }
 
   List<SoundPreset> get presets => List.unmodifiable(_presets);
+  List<SoundPreset> get communityPresets => List.unmodifiable(_communityPresets);
   SoundPreset? get activePreset => _activePreset;
   bool get isLoading => _isLoading;
 
@@ -32,6 +40,20 @@ class PresetController extends ChangeNotifier {
 
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<void> fetchCommunityPresets() async {
+    _communityPresets = await _supabaseService.fetchCommunityPresets();
+    notifyListeners();
+  }
+
+  /// Uploads a preset to Supabase cloud
+  Future<bool> syncPresetToCloud(SoundPreset preset) async {
+    final success = await _supabaseService.uploadPreset(preset);
+    if (success) {
+      await fetchCommunityPresets();
+    }
+    return success;
   }
 
   /// Applies preset settings to both soundscape controller and binaural controller.
@@ -62,6 +84,7 @@ class PresetController extends ChangeNotifier {
     required int colorHex,
     required SoundscapeController soundscapeController,
     required BinauralController binauralController,
+    bool syncToSupabase = true,
   }) async {
     final volumes = <String, double>{};
     final pans = <String, double>{};
@@ -92,6 +115,10 @@ class PresetController extends ChangeNotifier {
     );
 
     await _storageService.savePreset(newPreset);
+    if (syncToSupabase) {
+      await _supabaseService.uploadPreset(newPreset);
+    }
+
     _presets.add(newPreset);
     _activePreset = newPreset;
     notifyListeners();

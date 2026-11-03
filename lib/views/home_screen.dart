@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     PresetSelectorSheet.show(
       context,
       presets: presetController.presets,
+      communityPresets: presetController.communityPresets,
       activePreset: presetController.activePreset,
       onSelectPreset: (preset) {
         presetController.applyPreset(
@@ -48,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       },
       onDeletePreset: (id) => presetController.deletePreset(id),
+      onSyncPreset: (preset) => presetController.syncPresetToCloud(preset),
       onOpenSaveDialog: _openSavePresetDialog,
     );
   }
